@@ -37,5 +37,11 @@ def feature_target_sample(housing_data_sample):
 
 def test_data_split(feature_target_sample):
     return_tuple = data_split(*feature_target_sample)
-    # TODO test if the length of return_tuple is 4
-    raise NotImplemented
+    
+    # Check if the function returns exactly 4 items
+    assert len(return_tuple) == 4
+
+    # Check if data shapes are correct (splitting should not change data types)
+    X_train, X_test, y_train, y_test = return_tuple
+    assert X_train.shape[1] == X_test.shape[1]  # Number of features should be the same
+    assert len(y_train) > 0 and len(y_test) > 0  # Ensure that data was actually split    
